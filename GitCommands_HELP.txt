@@ -1,0 +1,18 @@
+to add files to a git repository:
+
+creating new file-
+ex.:
+	$ touch README.txt
+
+recording changes to a file-
+ex.:
+after modifying README.txt
+	$ git add README.txt
+
+modifying remote repo-
+ex.:
+actually make a snapshot of changes
+	$ git commit -m "Fix various typos"
+
+push changes to remote repo
+	$ git push
