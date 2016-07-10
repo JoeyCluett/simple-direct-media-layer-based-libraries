@@ -2,17 +2,18 @@
 #define RENDER_API_v1
 
 #include <iostream>
-#include <SDL_Line/LineDraw.h>
-#include <SDL_Line/LineDraw.cpp>
-#include <SDL_Line/LineObj.h>
-#include <SDL_Line/LineObj.cpp>
+#include <LineDraw.hpp>
+#include <LineObj.hpp>
 #include <SDL/SDL.h>
+
 #define DEGRAD degrees/57.295779
 
 using namespace std;
 
+namespace _3D_Render_H {
+
 LineDraw drawer;
-Line line;
+Line line(0, 0, 0, 0);
 
 //struct containing all data needed for defining single points in 3D space
 struct Point {
@@ -48,7 +49,7 @@ void axis_rotate(char axis, float degrees, Point a[], int pts, bool output){
                 a[i].y = x*sinf(DEGRAD) + y*cosf(DEGRAD);
                 break;
             default:
-                cout << "Undefined operation in axis_rotation" << endl; 
+                cout << "Undefined operation in axis_rotation" << endl;
 		break;
         }
     }
@@ -101,9 +102,11 @@ void plotLines(SDL_Surface* screen, Point a[], int sizea, int b[][2], int conns,
 	line.y1 = halfY - a[b[i][0]].z;
 	line.x2 = halfX + a[b[i][1]].x;
 	line.y2 = halfY - a[b[i][1]].z;
-	drawer.draw(line, screen, 1);
+	drawer.draw(&line, screen, 1);
     }
     SDL_Flip(screen);
+}
+
 }
 
 #endif //RENDER_API_v1
